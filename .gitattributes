@@ -1,0 +1,13 @@
+*.go linguist-detectable=true
+*.go linguist-language=Go
+
+
+*.ts linguist-detectable=true
+*.tsx linguist-detectable=true
+*.js linguist-detectable=true
+*.jsx linguist-detectable=true
+
+
+frontend/node_modules/* linguist-vendored
+frontend/dist/* linguist-vendored
+frontend/build/* linguist-vendored
