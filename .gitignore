@@ -1,0 +1,21 @@
+*.env
+
+# Binaries
+/bin/
+/pkg/
+/out/
+/*.exe
+/*.dll
+/*.so
+/*.dSYM/
+
+
+.vscode/
+.idea/
+
+
+
+
+# Logs
+*.log
+*.code-workspace
