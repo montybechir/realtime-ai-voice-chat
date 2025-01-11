@@ -1,18 +1,26 @@
 package middleware
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
-type HandleFunc func(w http.ResponseWriter, r *http.Request)
+type Middleware func(http.Handler) http.Handler
 
-type Middleware func(HandleFunc) HandleFunc
-
-func Handle(finalHandler HandleFunc, middlewares ...Middleware) HandleFunc {
-	if finalHandler == nil {
-		panic("No final handler")
+func NewLogger(logLevel string) Middleware {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			log.Printf("Request: %s %s", r.Method, r.URL.Path)
+			next.ServeHTTP(w, r)
+		})
 	}
+}
 
+func Chain(h http.Handler, middlewares ...Middleware) http.Handler {
+	// Apply middleware in reverse order
+	// Last middleware is executed first
 	for i := len(middlewares) - 1; i >= 0; i-- {
-		finalHandler = middlewares[i](finalHandler)
+		h = middlewares[i](h)
 	}
-	return finalHandler
+	return h
 }

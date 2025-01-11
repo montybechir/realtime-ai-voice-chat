@@ -13,6 +13,11 @@ export const useWebSocket = ({ handleAudioData }) => {
     const RECONNECT_INTERVAL = 1000;
     const isCleaningUp = useRef(false);
 
+    const WEBSOCKET_URL = import.meta.env.VITE_WEBSOCKET_URL;
+    if (!WEBSOCKET_URL) {
+        throw new Error('No websocket');
+    }
+
     const handleMessage = useCallback(
         (evt: MessageEvent) => {
             try {
@@ -52,7 +57,7 @@ export const useWebSocket = ({ handleAudioData }) => {
         }
 
         connectionState.current = ConnectionState.CONNECTING;
-        ws.current = new WebSocket(`ws://localhost:5555/ws`);
+        ws.current = new WebSocket(WEBSOCKET_URL);
 
         ws.current.onopen = () => {
             connectionState.current = ConnectionState.CONNECTED;

@@ -19,3 +19,5 @@
 # Logs
 *.log
 *.code-workspace
+
+__debug_*

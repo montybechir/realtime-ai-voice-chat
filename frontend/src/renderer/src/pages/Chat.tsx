@@ -1,4 +1,4 @@
-import useInterview from '@renderer/features/interview/hooks/useInterview';
+import useInterview from '@renderer/features/Interview/hooks/useInterview';
 import React from 'react';
 
 export const Chat: React.FC = () => {
