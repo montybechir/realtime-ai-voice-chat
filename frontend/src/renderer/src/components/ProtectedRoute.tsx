@@ -1,4 +1,4 @@
-import useAuth from '@renderer/features/auth/useAuth';
+import useAuth from '@renderer/features/Auth/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 
 interface ProtectRouteProps {
